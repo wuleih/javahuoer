@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timer.cn.mapper.UserMapper">
+  <resultMap extends="BaseResultMap" id="SuperResultMap" type="com.timer.cn.po.User">
+
+  </resultMap>
+  
+    <!-- 根据手机号查询用户 -->
+  	<select id="selectByMobile" resultMap="SuperResultMap">
+  		SELECT 
+  			<include refid="Base_Column_List" />
+  		FROM 
+  			tf_user 
+  		<where>
+	        <if test="userMobile != null and userMobile != ''">
+	            user_mobile = #{userMobile,jdbcType=VARCHAR}
+	        </if>
+	    </where> 
+  	</select>
+
+</mapper>

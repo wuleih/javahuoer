@@ -1,0 +1,665 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.timer.cn.mapper.UserMapper">
+  <resultMap id="BaseResultMap" type="com.timer.cn.po.User">
+     <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="user_name" jdbcType="VARCHAR" property="userName" />
+    <result column="user_mobile" jdbcType="VARCHAR" property="userMobile" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, user_name, user_mobile
+  </sql>
+  <select id="selectByExample" parameterType="com.timer.cn.po.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from tf_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from tf_user
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from tf_user
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.timer.cn.po.UserExample">
+    delete from tf_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.timer.cn.po.User">
+    insert into tf_user (id, create_time, true_name, 
+      user_name, user_year, user_mobile, 
+      user_qq, user_ww, user_telephone, 
+      user_address, user_birthday, security_mobile, 
+      user_email, user_password, available_balance, 
+      freeze_balance, user_gold, user_integral, 
+      last_login_date, last_login_ip, login_count, 
+      login_date, login_ip, report, 
+      user_sex, user_status, user_credit, 
+      qq_openid, sina_openid, area_id, 
+      photo_id, soft_delete, modify_time, 
+      head_img_path, remark_one, remark_two
+      )
+    values (#{id,jdbcType=BIGINT}, #{createTime,jdbcType=TIMESTAMP}, #{trueName,jdbcType=VARCHAR}, 
+      #{userName,jdbcType=VARCHAR}, #{userYear,jdbcType=INTEGER}, #{userMobile,jdbcType=VARCHAR}, 
+      #{userQq,jdbcType=VARCHAR}, #{userWw,jdbcType=VARCHAR}, #{userTelephone,jdbcType=VARCHAR}, 
+      #{userAddress,jdbcType=VARCHAR}, #{userBirthday,jdbcType=TIMESTAMP}, #{securityMobile,jdbcType=VARCHAR}, 
+      #{userEmail,jdbcType=VARCHAR}, #{userPassword,jdbcType=VARCHAR}, #{availableBalance,jdbcType=DECIMAL}, 
+      #{freezeBalance,jdbcType=DECIMAL}, #{userGold,jdbcType=INTEGER}, #{userIntegral,jdbcType=INTEGER}, 
+      #{lastLoginDate,jdbcType=TIMESTAMP}, #{lastLoginIp,jdbcType=VARCHAR}, #{loginCount,jdbcType=INTEGER}, 
+      #{loginDate,jdbcType=TIMESTAMP}, #{loginIp,jdbcType=VARCHAR}, #{report,jdbcType=INTEGER}, 
+      #{userSex,jdbcType=VARCHAR}, #{userStatus,jdbcType=INTEGER}, #{userCredit,jdbcType=INTEGER}, 
+      #{qqOpenid,jdbcType=VARCHAR}, #{sinaOpenid,jdbcType=VARCHAR}, #{areaId,jdbcType=BIGINT}, 
+      #{photoId,jdbcType=BIGINT}, #{softDelete,jdbcType=BIT}, #{modifyTime,jdbcType=TIMESTAMP}, 
+      #{headImgPath,jdbcType=VARCHAR}, #{remarkOne,jdbcType=VARCHAR}, #{remarkTwo,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.timer.cn.po.User">
+    insert into tf_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="trueName != null">
+        true_name,
+      </if>
+      <if test="userName != null">
+        user_name,
+      </if>
+      <if test="userYear != null">
+        user_year,
+      </if>
+      <if test="userMobile != null">
+        user_mobile,
+      </if>
+      <if test="userQq != null">
+        user_qq,
+      </if>
+      <if test="userWw != null">
+        user_ww,
+      </if>
+      <if test="userTelephone != null">
+        user_telephone,
+      </if>
+      <if test="userAddress != null">
+        user_address,
+      </if>
+      <if test="userBirthday != null">
+        user_birthday,
+      </if>
+      <if test="securityMobile != null">
+        security_mobile,
+      </if>
+      <if test="userEmail != null">
+        user_email,
+      </if>
+      <if test="userPassword != null">
+        user_password,
+      </if>
+      <if test="availableBalance != null">
+        available_balance,
+      </if>
+      <if test="freezeBalance != null">
+        freeze_balance,
+      </if>
+      <if test="userGold != null">
+        user_gold,
+      </if>
+      <if test="userIntegral != null">
+        user_integral,
+      </if>
+      <if test="lastLoginDate != null">
+        last_login_date,
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip,
+      </if>
+      <if test="loginCount != null">
+        login_count,
+      </if>
+      <if test="loginDate != null">
+        login_date,
+      </if>
+      <if test="loginIp != null">
+        login_ip,
+      </if>
+      <if test="report != null">
+        report,
+      </if>
+      <if test="userSex != null">
+        user_sex,
+      </if>
+      <if test="userStatus != null">
+        user_status,
+      </if>
+      <if test="userCredit != null">
+        user_credit,
+      </if>
+      <if test="qqOpenid != null">
+        qq_openid,
+      </if>
+      <if test="sinaOpenid != null">
+        sina_openid,
+      </if>
+      <if test="areaId != null">
+        area_id,
+      </if>
+      <if test="photoId != null">
+        photo_id,
+      </if>
+      <if test="softDelete != null">
+        soft_delete,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+      <if test="headImgPath != null">
+        head_img_path,
+      </if>
+      <if test="remarkOne != null">
+        remark_one,
+      </if>
+      <if test="remarkTwo != null">
+        remark_two,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trueName != null">
+        #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userYear != null">
+        #{userYear,jdbcType=INTEGER},
+      </if>
+      <if test="userMobile != null">
+        #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null">
+        #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userWw != null">
+        #{userWw,jdbcType=VARCHAR},
+      </if>
+      <if test="userTelephone != null">
+        #{userTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null">
+        #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="securityMobile != null">
+        #{securityMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="availableBalance != null">
+        #{availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="freezeBalance != null">
+        #{freezeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="userGold != null">
+        #{userGold,jdbcType=INTEGER},
+      </if>
+      <if test="userIntegral != null">
+        #{userIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginDate != null">
+        #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCount != null">
+        #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="loginDate != null">
+        #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="report != null">
+        #{report,jdbcType=INTEGER},
+      </if>
+      <if test="userSex != null">
+        #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userCredit != null">
+        #{userCredit,jdbcType=INTEGER},
+      </if>
+      <if test="qqOpenid != null">
+        #{qqOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="sinaOpenid != null">
+        #{sinaOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="photoId != null">
+        #{photoId,jdbcType=BIGINT},
+      </if>
+      <if test="softDelete != null">
+        #{softDelete,jdbcType=BIT},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headImgPath != null">
+        #{headImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkOne != null">
+        #{remarkOne,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkTwo != null">
+        #{remarkTwo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.timer.cn.po.UserExample" resultType="java.lang.Long">
+    select count(*) from tf_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update tf_user
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.createTime != null">
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.trueName != null">
+        true_name = #{record.trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userName != null">
+        user_name = #{record.userName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userYear != null">
+        user_year = #{record.userYear,jdbcType=INTEGER},
+      </if>
+      <if test="record.userMobile != null">
+        user_mobile = #{record.userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userQq != null">
+        user_qq = #{record.userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userWw != null">
+        user_ww = #{record.userWw,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userTelephone != null">
+        user_telephone = #{record.userTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userAddress != null">
+        user_address = #{record.userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userBirthday != null">
+        user_birthday = #{record.userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.securityMobile != null">
+        security_mobile = #{record.securityMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userEmail != null">
+        user_email = #{record.userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userPassword != null">
+        user_password = #{record.userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.availableBalance != null">
+        available_balance = #{record.availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.freezeBalance != null">
+        freeze_balance = #{record.freezeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="record.userGold != null">
+        user_gold = #{record.userGold,jdbcType=INTEGER},
+      </if>
+      <if test="record.userIntegral != null">
+        user_integral = #{record.userIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastLoginDate != null">
+        last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastLoginIp != null">
+        last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginCount != null">
+        login_count = #{record.loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.loginDate != null">
+        login_date = #{record.loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.loginIp != null">
+        login_ip = #{record.loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="record.report != null">
+        report = #{record.report,jdbcType=INTEGER},
+      </if>
+      <if test="record.userSex != null">
+        user_sex = #{record.userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userStatus != null">
+        user_status = #{record.userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="record.userCredit != null">
+        user_credit = #{record.userCredit,jdbcType=INTEGER},
+      </if>
+      <if test="record.qqOpenid != null">
+        qq_openid = #{record.qqOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sinaOpenid != null">
+        sina_openid = #{record.sinaOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.areaId != null">
+        area_id = #{record.areaId,jdbcType=BIGINT},
+      </if>
+      <if test="record.photoId != null">
+        photo_id = #{record.photoId,jdbcType=BIGINT},
+      </if>
+      <if test="record.softDelete != null">
+        soft_delete = #{record.softDelete,jdbcType=BIT},
+      </if>
+      <if test="record.modifyTime != null">
+        modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.headImgPath != null">
+        head_img_path = #{record.headImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarkOne != null">
+        remark_one = #{record.remarkOne,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarkTwo != null">
+        remark_two = #{record.remarkTwo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update tf_user
+    set id = #{record.id,jdbcType=BIGINT},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      true_name = #{record.trueName,jdbcType=VARCHAR},
+      user_name = #{record.userName,jdbcType=VARCHAR},
+      user_year = #{record.userYear,jdbcType=INTEGER},
+      user_mobile = #{record.userMobile,jdbcType=VARCHAR},
+      user_qq = #{record.userQq,jdbcType=VARCHAR},
+      user_ww = #{record.userWw,jdbcType=VARCHAR},
+      user_telephone = #{record.userTelephone,jdbcType=VARCHAR},
+      user_address = #{record.userAddress,jdbcType=VARCHAR},
+      user_birthday = #{record.userBirthday,jdbcType=TIMESTAMP},
+      security_mobile = #{record.securityMobile,jdbcType=VARCHAR},
+      user_email = #{record.userEmail,jdbcType=VARCHAR},
+      user_password = #{record.userPassword,jdbcType=VARCHAR},
+      available_balance = #{record.availableBalance,jdbcType=DECIMAL},
+      freeze_balance = #{record.freezeBalance,jdbcType=DECIMAL},
+      user_gold = #{record.userGold,jdbcType=INTEGER},
+      user_integral = #{record.userIntegral,jdbcType=INTEGER},
+      last_login_date = #{record.lastLoginDate,jdbcType=TIMESTAMP},
+      last_login_ip = #{record.lastLoginIp,jdbcType=VARCHAR},
+      login_count = #{record.loginCount,jdbcType=INTEGER},
+      login_date = #{record.loginDate,jdbcType=TIMESTAMP},
+      login_ip = #{record.loginIp,jdbcType=VARCHAR},
+      report = #{record.report,jdbcType=INTEGER},
+      user_sex = #{record.userSex,jdbcType=VARCHAR},
+      user_status = #{record.userStatus,jdbcType=INTEGER},
+      user_credit = #{record.userCredit,jdbcType=INTEGER},
+      qq_openid = #{record.qqOpenid,jdbcType=VARCHAR},
+      sina_openid = #{record.sinaOpenid,jdbcType=VARCHAR},
+      area_id = #{record.areaId,jdbcType=BIGINT},
+      photo_id = #{record.photoId,jdbcType=BIGINT},
+      soft_delete = #{record.softDelete,jdbcType=BIT},
+      modify_time = #{record.modifyTime,jdbcType=TIMESTAMP},
+      head_img_path = #{record.headImgPath,jdbcType=VARCHAR},
+      remark_one = #{record.remarkOne,jdbcType=VARCHAR},
+      remark_two = #{record.remarkTwo,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.timer.cn.po.User">
+    update tf_user
+    <set>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="trueName != null">
+        true_name = #{trueName,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null">
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="userYear != null">
+        user_year = #{userYear,jdbcType=INTEGER},
+      </if>
+      <if test="userMobile != null">
+        user_mobile = #{userMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userQq != null">
+        user_qq = #{userQq,jdbcType=VARCHAR},
+      </if>
+      <if test="userWw != null">
+        user_ww = #{userWw,jdbcType=VARCHAR},
+      </if>
+      <if test="userTelephone != null">
+        user_telephone = #{userTelephone,jdbcType=VARCHAR},
+      </if>
+      <if test="userAddress != null">
+        user_address = #{userAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="userBirthday != null">
+        user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      </if>
+      <if test="securityMobile != null">
+        security_mobile = #{securityMobile,jdbcType=VARCHAR},
+      </if>
+      <if test="userEmail != null">
+        user_email = #{userEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="userPassword != null">
+        user_password = #{userPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="availableBalance != null">
+        available_balance = #{availableBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="freezeBalance != null">
+        freeze_balance = #{freezeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="userGold != null">
+        user_gold = #{userGold,jdbcType=INTEGER},
+      </if>
+      <if test="userIntegral != null">
+        user_integral = #{userIntegral,jdbcType=INTEGER},
+      </if>
+      <if test="lastLoginDate != null">
+        last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastLoginIp != null">
+        last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="loginCount != null">
+        login_count = #{loginCount,jdbcType=INTEGER},
+      </if>
+      <if test="loginDate != null">
+        login_date = #{loginDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginIp != null">
+        login_ip = #{loginIp,jdbcType=VARCHAR},
+      </if>
+      <if test="report != null">
+        report = #{report,jdbcType=INTEGER},
+      </if>
+      <if test="userSex != null">
+        user_sex = #{userSex,jdbcType=VARCHAR},
+      </if>
+      <if test="userStatus != null">
+        user_status = #{userStatus,jdbcType=INTEGER},
+      </if>
+      <if test="userCredit != null">
+        user_credit = #{userCredit,jdbcType=INTEGER},
+      </if>
+      <if test="qqOpenid != null">
+        qq_openid = #{qqOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="sinaOpenid != null">
+        sina_openid = #{sinaOpenid,jdbcType=VARCHAR},
+      </if>
+      <if test="areaId != null">
+        area_id = #{areaId,jdbcType=BIGINT},
+      </if>
+      <if test="photoId != null">
+        photo_id = #{photoId,jdbcType=BIGINT},
+      </if>
+      <if test="softDelete != null">
+        soft_delete = #{softDelete,jdbcType=BIT},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="headImgPath != null">
+        head_img_path = #{headImgPath,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkOne != null">
+        remark_one = #{remarkOne,jdbcType=VARCHAR},
+      </if>
+      <if test="remarkTwo != null">
+        remark_two = #{remarkTwo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.timer.cn.po.User">
+    update tf_user
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      true_name = #{trueName,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      user_year = #{userYear,jdbcType=INTEGER},
+      user_mobile = #{userMobile,jdbcType=VARCHAR},
+      user_qq = #{userQq,jdbcType=VARCHAR},
+      user_ww = #{userWw,jdbcType=VARCHAR},
+      user_telephone = #{userTelephone,jdbcType=VARCHAR},
+      user_address = #{userAddress,jdbcType=VARCHAR},
+      user_birthday = #{userBirthday,jdbcType=TIMESTAMP},
+      security_mobile = #{securityMobile,jdbcType=VARCHAR},
+      user_email = #{userEmail,jdbcType=VARCHAR},
+      user_password = #{userPassword,jdbcType=VARCHAR},
+      available_balance = #{availableBalance,jdbcType=DECIMAL},
+      freeze_balance = #{freezeBalance,jdbcType=DECIMAL},
+      user_gold = #{userGold,jdbcType=INTEGER},
+      user_integral = #{userIntegral,jdbcType=INTEGER},
+      last_login_date = #{lastLoginDate,jdbcType=TIMESTAMP},
+      last_login_ip = #{lastLoginIp,jdbcType=VARCHAR},
+      login_count = #{loginCount,jdbcType=INTEGER},
+      login_date = #{loginDate,jdbcType=TIMESTAMP},
+      login_ip = #{loginIp,jdbcType=VARCHAR},
+      report = #{report,jdbcType=INTEGER},
+      user_sex = #{userSex,jdbcType=VARCHAR},
+      user_status = #{userStatus,jdbcType=INTEGER},
+      user_credit = #{userCredit,jdbcType=INTEGER},
+      qq_openid = #{qqOpenid,jdbcType=VARCHAR},
+      sina_openid = #{sinaOpenid,jdbcType=VARCHAR},
+      area_id = #{areaId,jdbcType=BIGINT},
+      photo_id = #{photoId,jdbcType=BIGINT},
+      soft_delete = #{softDelete,jdbcType=BIT},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      head_img_path = #{headImgPath,jdbcType=VARCHAR},
+      remark_one = #{remarkOne,jdbcType=VARCHAR},
+      remark_two = #{remarkTwo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

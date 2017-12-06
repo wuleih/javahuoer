@@ -1,0 +1,69 @@
+server: 
+  port: 9997
+
+spring: 
+  application: 
+    name: order
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /**
+    view:
+      suffix: .html
+  thymeleaf:
+    cache: false
+  #resources:
+    #add-mappings: false
+    #static-locations: classpath:/templates/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+  datasource: 
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:3306/test?useUnicode=true&characterEncoding=UTF-8
+#    url: jdbc:mysql://192.168.0.81:3306/terraform?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: root
+    initialSize: 5
+    maxActive: 30
+    maxIdle: 20
+    minIdle: 3
+    filters: wall
+    removeAbandoned: true
+    removeAbandonedTimeout: 200
+    logAbandoned: true
+    maxWait: 100
+    validationQuery: select 1 from dual
+    minEvictableIdleTimeMillis: 30000
+    timeBetweenEvictionRunsMillis: 30000
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    maxOpenPreparedStatements: 20
+
+mybatis:
+   mapperLocations: classpath*:/mappers/*/*.xml
+   type-aliases-package: com.timer.cn.mapper
+   configuration:
+     map-underscore-to-camel-case: true
+#  activemq:
+#    broker-url: tcp://192.168.0.81:61616
+#    user: admin
+#    password: admin
+#    pool:
+#      max-connections: 20
+#      configuration:
+#        connection-factory: org.springframework.boot.autoconfigure.jms.activemq.ActiveMQConnectionFactoryConfiguration
+    
+
+eureka: 
+  instance: 
+    instance-id: ${spring.application.name}:${server.port}
+    prefer-ip-address: true                       # 设置微服务调用地址为IP优先（缺省为false）
+    lease-renewal-interval-in-seconds: 5          # 心跳时间，即服务续约间隔时间（缺省为30s）
+    lease-expiration-duration-in-seconds: 15      # 发呆时间，即服务续约到期时间（缺省为90s）
+    hostname: localhost
+  client: 
+    serviceUrl: 
+      defaultZone: http://${eureka.instance.hostname}:9999/eureka/
+
+
+
+      
