@@ -29,7 +29,7 @@
         <appender-ref ref="console" />
     </root>
 
-    <logger name="com.timer.cn" level="INFO">
+    <logger name="com.huoer.cn" level="INFO">
         <appender-ref ref="fileAppender" />
     </logger>
 

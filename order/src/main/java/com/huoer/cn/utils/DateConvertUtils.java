@@ -1,4 +1,4 @@
-package com.timer.cn.utils;
+package com.huoer.cn.utils;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

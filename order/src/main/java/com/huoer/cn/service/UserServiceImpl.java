@@ -1,13 +1,13 @@
-package com.timer.cn.service;
+package com.huoer.cn.service;
 
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
-import com.timer.cn.mapper.UserMapper;
-import com.timer.cn.po.User;
-import com.timer.cn.po.UserExample;
+import com.huoer.cn.po.User;
+import com.huoer.cn.po.UserExample;
+import com.huoer.cn.mapper.UserMapper;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

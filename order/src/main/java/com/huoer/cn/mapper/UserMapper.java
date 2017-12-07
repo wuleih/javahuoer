@@ -1,7 +1,7 @@
-package com.timer.cn.mapper;
+package com.huoer.cn.mapper;
 
-import com.timer.cn.po.User;
-import com.timer.cn.po.UserExample;
+import com.huoer.cn.po.User;
+import com.huoer.cn.po.UserExample;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 

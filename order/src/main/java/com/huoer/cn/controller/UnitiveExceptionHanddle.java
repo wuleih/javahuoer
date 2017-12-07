@@ -1,11 +1,11 @@
-package com.timer.cn.controller;
+package com.huoer.cn.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.timer.cn.base.MyselfException;
-import com.timer.cn.base.ResponseData;
-import com.timer.cn.utils.DateConvertUtils;
+import com.huoer.cn.utils.DateConvertUtils;
+import com.huoer.cn.base.MyselfException;
+import com.huoer.cn.base.ResponseData;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;

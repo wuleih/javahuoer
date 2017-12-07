@@ -1,4 +1,4 @@
-package com.timer.cn.base;
+package com.huoer.cn.base;
 
 import java.io.Serializable;
 

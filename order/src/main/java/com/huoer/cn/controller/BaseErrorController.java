@@ -1,4 +1,4 @@
-package com.timer.cn.controller;
+package com.huoer.cn.controller;
 
 import java.util.Map;
 

@@ -1,11 +1,11 @@
-package com.timer.cn.controller;
+package com.huoer.cn.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.timer.cn.base.MyselfException;
-import com.timer.cn.po.User;
-import com.timer.cn.service.UserService;
+import com.huoer.cn.po.User;
+import com.huoer.cn.service.UserService;
+import com.huoer.cn.base.MyselfException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;

@@ -1,6 +1,6 @@
-package com.timer.cn.po;
+package com.huoer.cn.po;
 
-import com.timer.cn.base.BaseEntity;
+import com.huoer.cn.base.BaseEntity;
 
 import java.math.BigDecimal;
 import java.util.Date;

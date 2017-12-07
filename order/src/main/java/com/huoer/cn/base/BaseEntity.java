@@ -1,6 +1,6 @@
-package com.timer.cn.base;
+package com.huoer.cn.base;
 
-import com.timer.cn.utils.DateConvertUtils;
+import com.huoer.cn.utils.DateConvertUtils;
 
 import java.io.Serializable;
 import java.util.Date;

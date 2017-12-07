@@ -1,4 +1,4 @@
-package com.timer.cn.base;
+package com.huoer.cn.base;
 
 import org.springframework.boot.context.embedded.ConfigurableEmbeddedServletContainer;
 import org.springframework.boot.context.embedded.EmbeddedServletContainerCustomizer;

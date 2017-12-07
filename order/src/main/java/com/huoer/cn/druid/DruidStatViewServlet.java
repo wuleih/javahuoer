@@ -1,4 +1,4 @@
-package com.timer.cn.druid;
+package com.huoer.cn.druid;
 
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;

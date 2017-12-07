@@ -1,4 +1,4 @@
-package com.timer.cn.po;
+package com.huoer.cn.po;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

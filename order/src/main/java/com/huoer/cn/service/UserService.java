@@ -1,6 +1,6 @@
-package com.timer.cn.service;
+package com.huoer.cn.service;
 
-import com.timer.cn.po.User;
+import com.huoer.cn.po.User;
 
 import java.util.List;
 
