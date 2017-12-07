@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="ctx" th:content="${#httpServletRequest.getContextPath()}" />
+<title>Insert title here</title>
+<script src="http://libs.baidu.com/jquery/1.11.1/jquery.min.js"></script>
+</head>
+<body>
+   <p th:text="'Hello, 统一错误页面  with thymeleaf !'" /> <br/>
+   <p th:text="${error}" />
+   <p th:text="${result}" />
+</body>
+
+<script type="text/javascript">
+  var _ctx = $("meta[name='ctx']").attr("content");
+</script>
+</html>

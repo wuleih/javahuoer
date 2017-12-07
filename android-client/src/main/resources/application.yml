@@ -1,0 +1,66 @@
+eureka:
+  client:
+    registry-fetch-interval-seconds: 10 #每隔10秒去eureka服务器拉去一次服务注册信息
+    serviceUrl:
+      defaultZone: http://localhost:9999/eureka/
+      
+server:
+  port: 9990
+  #max-http-header-size: 8888
+  session:
+    timeout: 7200
+  
+spring:
+  #profiles:
+    #active: dev
+  application:
+    name: app
+  mvc:
+    throw-exception-if-no-handler-found: true
+    static-path-pattern: /**
+    view:
+      suffix: .html
+  thymeleaf:
+    cache: false
+  #session:
+    #store-type: none #用来存放session的存储方式，目前Spring boot中只支持Redis方式
+
+#security:
+#  enable-csrf: true
+#  headers:
+#    cache: false
+
+ribbon:
+  eager-load:
+    clients: order,stock
+
+#logging:
+#  level:
+#    com:
+#     blog: DEBUG 
+
+feign:
+  compression:
+    request:
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+  httpclient: 
+    enabled: false
+  okhttp:
+    enabled: true
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 #hystrix默认超时时间1000ms 此处设置成5000ms
+        #timeout:
+        #  enabled: false   #hystrix默认超时时间1000ms 此处关闭超时
+
+      
+    
+     
+     
+ 
