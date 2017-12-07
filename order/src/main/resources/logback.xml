@@ -15,6 +15,9 @@
             <fileNamePattern>${LOG_HOME}/greenhouse.%d{yyyy-MM-dd}.log</fileNamePattern>
             <maxHistory>90</maxHistory>
         </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>10MB</maxFileSize>
+        </triggeringPolicy>
         <encoder>
             <pattern>[%thread][%d{HH:mm:ss.SSS}][%p][%logger{0}:%L] %m%n</pattern>
             <charset>UTF-8</charset>
@@ -26,7 +29,7 @@
         <appender-ref ref="console" />
     </root>
 
-    <logger name="com.timer" level="INFO">
+    <logger name="com.timer.cn" level="INFO">
         <appender-ref ref="fileAppender" />
     </logger>
 
